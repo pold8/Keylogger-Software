@@ -1,0 +1,3 @@
+D:/personal_projects/keylogger-project/cmake-build-debug/CMakeFiles/keylogger_project.dir
+D:/personal_projects/keylogger-project/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/personal_projects/keylogger-project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
