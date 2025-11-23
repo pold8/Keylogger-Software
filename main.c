@@ -1,7 +1,8 @@
-#include <stdio.h>
+#include "log.h"
+#include <windows.h>
 
 int main(void)
 {
-    printf("Hello, World!\n");
+
     return 0;
 }
