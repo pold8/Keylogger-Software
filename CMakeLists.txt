@@ -3,4 +3,4 @@ project(keylogger_project C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(keylogger_project main.c)
+add_executable(keylogger_project keylogger.c)
